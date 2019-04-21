@@ -1,6 +1,16 @@
-.nav-wrapper{
- background-color:red; 
+.navfeature {
+  color: #fff;
+  background-color: #689f38;
+  width: 100%;
+  height: 56px;
+  line-height: 56px;
 }
+
+.nav-wrapper{
+ background-color:#689f38; 
+}
+
+
 
 .form-border{
   border-radius: 5px;
@@ -19,3 +29,5 @@ input[type=text], select {
   box-sizing: border-box;
   background-color: white
 }
+
+

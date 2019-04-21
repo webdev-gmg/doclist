@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $('.sidenav').sidenav();
+    $('.modal').modal();
   getDoctors();
+  $(document).on("click", "button.delete", handlePostDelete);
 });
 
 
@@ -48,9 +50,9 @@ function insertDoctor(event) {
     lastname: $("#lastname").val(),
     lead: leadValue
   };
-  $.post("/api/adddoctor", doctor, function(dbdoctor) {
-    alert("The new doctor has been added");
+  $.post("/api/adddoctor", doctor, function() {
     getDoctors();
+    
   });
 }
 
@@ -66,6 +68,26 @@ function getDoctors() {
                                         <td>${data[i].firstname}</td>
                                         <td>${data[i].lastname}</td>
                                         <td>${data[i].lead}</td>
+                                        <td><div><button class = "delete btn-floating btn-large waves-effect waves-light red"><i class="material-icons" id=${data[i].id}>
+                                        delete
+                                        </i></button></td>
                                     </tr>`);
   });
 }
+
+
+ function deleteDoctor(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/doctors/" + id
+    })
+      .then(function() {
+        getDoctors();
+      });
+  }
+
+  function handlePostDelete(event) {
+      event.preventDefault();
+console.log(event.target.id)
+    deleteDoctor(event.target.id);
+  }

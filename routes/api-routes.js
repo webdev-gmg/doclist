@@ -103,4 +103,17 @@ module.exports = function(app) {
       res.json(dbdoctor); // returns as json when called on the webpage
     });
   });
+
+  // DELETE route for deleting doctors
+  app.delete("/api/doctors/:id", function(req, res) {
+    db.Doctor.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function(dbDoctor) {
+        res.json(dbDoctor);
+      });
+  });
+
 };
