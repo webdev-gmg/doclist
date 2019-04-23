@@ -52,7 +52,8 @@ function insertDoctor(event) {
   };
   $.post("/api/adddoctor", doctor, function() {
     getDoctors();
-    
+  //  $("#firstname").val() = "";
+   // $("#lastname").val() = "";
   });
 }
 
@@ -61,18 +62,22 @@ function getDoctors() {
   $.get("/api/doctors", function(data) {
     // console.log(data);
     //alert('The new doctor has been added')
-    for (i = 0; i < data.length; i++)
-      // if(data[i].lead === 0){data[i].lead ='Yes'} else{data[i.lead = 'No']}
+    for (i = 0; i < data.length; i++){
+  //  console.log(data[i].lead)
+       if(data[i].lead === false)
+            {data[i].lead ='No'} 
+            else{data[i].lead = 'Yes'}
       $("#doctorList").append(`<tr>
-                                        <td>${data[i].id}</td>
+                                        <!--    <td>${data[i].id}</td>-->
                                         <td>${data[i].firstname}</td>
                                         <td>${data[i].lastname}</td>
                                         <td>${data[i].lead}</td>
                                         <td><div><button class = "delete btn-floating btn-large waves-effect waves-light red"><i class="material-icons" id=${data[i].id}>
                                         delete
                                         </i></button></td>
-                                    </tr>`);
+                                    </tr>`);}
   });
+  
 }
 
 
