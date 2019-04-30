@@ -48,13 +48,19 @@ function insertDoctor(event) {
   var doctor = {
     firstname: $("#firstname").val(),
     lastname: $("#lastname").val(),
-    lead: leadValue
+    lead: leadValue,
+    licenceno: "MD-"+$("#licenceno").val()
   };
   $.post("/api/adddoctor", doctor, function() {
     getDoctors();
   //  $("#firstname").val() = "";
    // $("#lastname").val() = "";
-  });
+  }).then(function () {
+    console.log("Ok")
+})
+.catch(function (e) {
+    console.log(e.message)
+});
 }
 
 function getDoctors() {

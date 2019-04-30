@@ -87,7 +87,8 @@ module.exports = function(app) {
     db.Doctor.create({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      lead: req.body.lead
+      lead: req.body.lead,
+      licenceno:req.body.licenceno
 
     }).then(function(dbdoctor) {
       // We have access to the new todo as an argument inside of the callback function
